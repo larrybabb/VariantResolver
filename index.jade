@@ -1,0 +1,13 @@
+link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.min.css')
+
+script(type='text/javascript', src='bower_components/angular/angular.js')
+script(type='text/javascript', src='/app/app.js')
+
+body(ng-app='app')
+    .container
+        h2 Find a Variant!
+        div(ng-controller='testCtrl')
+            .list-group
+                a.list-group-item(href='#', ng-repeat="variant in variants")
+                    h4.list-group-item-heading {{ variant.name }}
+                    p.list-group-item-text {{ variant.description }}
