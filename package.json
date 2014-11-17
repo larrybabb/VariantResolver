@@ -1,6 +1,6 @@
 {
   "name": "workspace",
-  "version": "1.0.0",bower 
+  "version": "1.0.0",
   "description": "Variant Resolver App",
   "main": "index.js",
   "scripts": {
