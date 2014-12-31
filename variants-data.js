@@ -7,11 +7,15 @@ var findVariants = function(query) {
     return Promise.cast(mongoose.model('Variant').find(query).exec());
 }
 
+var createVariant = Promise.promisify(Variant.create, Variant);
+
+// exports 
+
 exports.findVariants = findVariants;
 
 exports.connectDB = Promise.promisify(mongoose.connect, mongoose);
 
-var createVariant = Promise.promisify(Variant.create, Variant);
+exports.saveVariant = createVariant;
 
 exports.seedVariants = function() {
     return findVariants({}).then(function(collection){

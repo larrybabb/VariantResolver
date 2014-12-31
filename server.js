@@ -4,16 +4,12 @@ var variantsData = require("./variants-data.js");
 
 var app = express();
 
+require("./variants-service.js")(variantsData, app);
+
 app.set('views', __dirname);
 app.set('view engine', 'jade');
 
 app.use(express.static(__dirname + '/public'));
-
-app.get('/api/variants', function(req, res) {
-    variantsData.findVariants().then(function (collection) {
-        res.send(collection);
-    })
-});
 
 app.get('*', function(req, res) {
     res.render('index');

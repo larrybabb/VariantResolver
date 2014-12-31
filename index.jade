@@ -3,11 +3,20 @@ link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.min.c
 script(type='text/javascript', src='bower_components/angular/angular.js')
 script(type='text/javascript', src='bower_components/angular-resource/angular-resource.js')
 script(type='text/javascript', src='/app/app.js')
+script(type='text/javascript', src='/app/variants.js')
 
 body(ng-app='app')
     .container
-        h2 Find a Variant!
         div(ng-controller='testCtrl')
+            h1 Post a New Variant
+            form(ng-submit="submit()")
+                .form-group
+                    input.form-control(placeholder="Name", ng-model="name")
+                .form-group
+                    textarea.form-control(placeholder"Description", ng-model="description")
+                .form-group
+                    button.btn.btn-primary(type="submit") Post
+            h1 Find a Variant!
             .list-group
                 a.list-group-item(href='#', ng-repeat="variant in variants")
                     h4.list-group-item-heading {{ variant.name }}
