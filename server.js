@@ -1,6 +1,6 @@
 var express = require('express');
-var mongoose = require('mongoose');
 var variantModel = require("./models/Variant");
+var variantsData = require("./variants-data.js");
 
 var app = express();
 
@@ -10,7 +10,7 @@ app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/api/variants', function(req, res) {
-    mongoose.model('Variant').find({}).exec(function(error,collection) {
+    variantsData.findVariants().then(function (collection) {
         res.send(collection);
     })
 });
@@ -20,13 +20,10 @@ app.get('*', function(req, res) {
 });
 
 //mongoose.connect('mongodb://localhost/variantresolver');
-mongoose.connect('mongodb://psdev:psdev@ds053320.mongolab.com:53320/variantresolver')
-
-var con = mongoose.connection;
-
-con.once('open', function() {
+variantsData.connectDB('mongodb://psdev:psdev@ds053320.mongolab.com:53320/variantresolver')
+.then(function() {
     console.log('connected to mongodb successfully!');
-    variantModel.seedVariants();
+    variantsData.seedVariants();
 });
 
 //app.listen(3000);  // if local this is good enough
