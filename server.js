@@ -30,4 +30,4 @@ con.once('open', function() {
 });
 
 //app.listen(3000);  // if local this is good enough
-app.listen(process.env.PORT, process.env.IP);
+app.listen(process.env.PORT, process.env.IP);  // cloud 9 env variables.
